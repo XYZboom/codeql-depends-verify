@@ -1,0 +1,12 @@
+---
+library: false
+warnOnImplicitThis: true
+name: dependencies
+dependencies:
+  codeql/java-all: ^0.11.0
+  codeql/suite-helpers: ^0.8.16
+  codeql/util: ^0.8.16
+suites: codeql-suites
+groups:
+ - java
+ - queries
