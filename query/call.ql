@@ -9,4 +9,4 @@
 import java
 
 from Call c
-select c, c.getCaller().getQualifiedName() + " " + c.getCallee().getQualifiedName()
+select c, c.getEnclosingCallable().getQualifiedName() + " " + c.getCallee().getQualifiedName()
