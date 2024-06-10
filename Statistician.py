@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Dict, Tuple, List
+from typing import Dict, List
 
 
 class Statistician:
@@ -10,13 +10,19 @@ class Statistician:
     
     def __str__(self):
         _result = ""
+        _all_count = 0
+        _all_pos = 0
         for i in self.__dict:
-            _negative, _positive, = self.__dict[i]
-            _result += f"{i}: {_negative / (_positive + _negative)}\n"
+            _positive, _negative, = self.__dict[i]
+            _count = _positive + _negative
+            _all_count += _count
+            _all_pos += _positive
+            _result += f"{i}: {_count} {_positive / _count}\n"
+        _result += f"all: {_all_count} {_all_pos / _all_count}"
         return _result
     
     def negative(self, _s: str):
-        self.__dict[_s][0] += 1
+        self.__dict[_s][1] += 1
     
     def positive(self, _s: str):
-        self.__dict[_s][1] += 1
+        self.__dict[_s][0] += 1

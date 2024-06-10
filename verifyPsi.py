@@ -46,11 +46,16 @@ def hardcode_name_handle(_s: str):
         _l = _s.split(".")[:-1]
         return ".".join(_l)
     
+    def repeatLastEle(_s: str) -> str:
+        _last = _s.split(".")[-1]
+        return _s + "." + _last
+    
     _handler = {
         "normal": PredictAndParse(lambda _: True, lambda _s: _s),
         "remove .Companion": PredictAndParse(containsCompanion, removeCompanion),
         "Constructor as Class name": PredictAndParse(isConstructorName, constructor2Class),
         "Remove last element": PredictAndParse(isPropertyOrFieldName, removeLastEle),
+        "Repeat last element": PredictAndParse(lambda _: True, repeatLastEle),
     }
     return handle(_s, _handler)
 
@@ -93,10 +98,10 @@ if __name__ == '__main__':
         result = f"{src} {dest}"
         for t in dep['values']:
             if result in psi:
-                stat.negative(t)
+                stat.positive(t)
             else:
                 print(result, t)
-                stat.positive(t)
+                stat.negative(t)
     
     print(stat)
     with open("debug.txt", "w") as f:
